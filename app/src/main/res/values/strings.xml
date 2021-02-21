@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Генератор паролей</string>
+    <string name="upper_case">БОЛЬШИЕ БУКВЫ</string>
+    <string name="lower_case">МАЛЕНЬКИЕ БУКВЫ</string>
+    <string name="number">ЧИСЛА</string>
+    <string name="symbols">СИМВОЛЫ</string>
+    <string name="gen_pass">сгенерировать</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="auto_copy">КОПИРОВАНИЕ В БУФЕР</string>
+</resources>
