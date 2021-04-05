@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/etPass"
@@ -23,37 +20,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/generate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/gen_pass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPass" />
-
     <CheckBox
         android:id="@+id/upper"
         style="@style/gen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="@string/upper_case"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generate" />
+        app:layout_constraintTop_toTopOf="@+id/lengthPass" />
 
     <CheckBox
         android:id="@+id/symbs"
         style="@style/gen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/symbols"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generate" />
+        app:layout_constraintTop_toTopOf="@+id/lengthPass" />
 
     <CheckBox
         android:id="@+id/lower"
@@ -79,13 +64,14 @@
         android:id="@+id/lengthPass"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/lower"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generate" />
+        app:layout_constraintTop_toBottomOf="@+id/etPass" />
+
     <Button
         android:id="@+id/plus"
         android:layout_width="50dp"
@@ -113,6 +99,7 @@
         app:layout_constraintEnd_toEndOf="@+id/plus"
         app:layout_constraintStart_toStartOf="@+id/minus"
         app:layout_constraintTop_toBottomOf="@+id/lengthPass" />
+
     <ImageButton
         android:id="@+id/copy_btn"
         android:layout_width="wrap_content"
@@ -124,5 +111,23 @@
         app:srcCompat="@drawable/copy_image"
         tools:ignore="VectorDrawableCompat" />
 
+    <Button
+        android:id="@+id/generate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/gen_pass"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/generate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auto_copy" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

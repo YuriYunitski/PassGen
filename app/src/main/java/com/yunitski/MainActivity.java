@@ -1,5 +1,6 @@
 package com.yunitski;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -8,12 +9,18 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CheckBox up, low, nums, sym, copy;
     int lenPass;
     SharedPreferences sharedPreferences;
+    ListView listView;
+    ArrayList<String> arrayList;
+    ArrayAdapter<String> arrayAdapter;
     final String SAVED_UP = "saved_up";
     final String SAVED_LOW = "saved_low";
     final String SAVED_SYM = "saved_sym";
@@ -52,9 +62,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         copy = findViewById(R.id.auto_copy);
         copyBtn = findViewById(R.id.copy_btn);
         copyBtn.setOnClickListener(this);
-        length.setText(""+6);
+        length.setText("" + 6);
+        listView = findViewById(R.id.list_view);
+        arrayList = new ArrayList<>();
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                String s = arrayList.get(position);
+                ClipData clip = ClipData.newPlainText("copied_text", s);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getApplicationContext(), "Пароль скопирован в буфер", Toast.LENGTH_SHORT).show();
+            }
+        });
         load();
     }
+
 
     @Override
     protected void onStop() {
@@ -148,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } else {
                 Toast.makeText(this, "введите длину", Toast.LENGTH_SHORT).show();
             }
+                arrayAdapter.insert(etGen.getText().toString(), 0);
             break;
             case R.id.plus:
                 int currLen = Integer.parseInt(length.getText().toString());
@@ -172,7 +199,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Пароль скопирован в буфер", Toast.LENGTH_SHORT).show();
         }
     }
-    void save(){
+
+    private void updateUI() {
+
+
+    }
+
+    void save() {
         String savePass = etGen.getText().toString();
         boolean isUp = up.isChecked();
         boolean isLow = low.isChecked();
