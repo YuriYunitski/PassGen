@@ -19,7 +19,8 @@
         app:layout_constraintEnd_toStartOf="@+id/copy_btn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lengthPass" />
+        app:layout_constraintTop_toBottomOf="@+id/lengthPass"
+        android:focusableInTouchMode="true" />
 
     <Button
         android:id="@+id/generate"
@@ -81,7 +82,9 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lower" />
+        app:layout_constraintTop_toBottomOf="@+id/lower"
+        android:focusableInTouchMode="true"
+        />
 
     <Button
         android:id="@+id/plus"

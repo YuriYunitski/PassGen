@@ -81,6 +81,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         load();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        etGen.clearFocus();
+        length.clearFocus();
+    }
 
     @Override
     protected void onStop() {
